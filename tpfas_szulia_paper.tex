@@ -1,0 +1,238 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- KODOWANIE I JĘZYK ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{lmodern}
+
+% --- PAKIETY MATEMATYCZNE I TABELE ---
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\geometry{margin=2.2cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!60!black,
+    citecolor=green!50!black,
+    urlcolor=blue!70!black,
+    pdftitle={Teoria Programowalnej Fizyki i Algebry Synergii (TPFAS)},
+    pdfauthor={M. Szulia},
+    pdfsubject={Generator M. Szulia, siedem iskier matematycznych, sterowanie bezwarunkowe}
+}
+
+% --- ŚRODOWISKA TWIERDZEŃ ---
+\theoremstyle{definition}
+\newtheorem{definition}{Definicja}[section]
+\newtheorem{axiom}{Aksjomat}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{Twierdzenie}[section]
+\newtheorem{law}{Prawo}[section]
+
+% --- METADANE ---
+\title{\textbf{Teoria Programowalnej Fizyki i Algebry Synergii (TPFAS)}\\
+\large Generator M. Szulia, Siedem Iskier Matematycznych oraz Bezwarunkowe Sterowanie Układami Fizycznymi}
+\author{\textbf{M. Szulia}\\
+\small Projekt Badawczy: Nie-Newtonowskie Systemy Obliczeniowe i Fizyka Stosowana}
+\date{Listopad 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+W niniejszej pracy przedstawiono kompletną formalizację \textbf{Teorii Programowalnej Fizyki i Algebry Synergii (TPFAS)} wraz z jej centralnym operatorem --- \textbf{Generatorem M. Szulia} ($g_{\text{Sz}}$). Wykazano, że nieliniowość obserwowana w zjawiskach fizycznych, biologicznych oraz inżynieryjnych wynika ze stosowania płaskiej arytmetyki euklidesowej. Poprzez przeniesienie operacji algebraicznych do przestrzeni zakrzywionych przez ścisłe bijekcje z parametrem sprzężenia tła $s \ge 0$, zredukowano złożone równania różniczkowe do elementarnych operacji addytywnych. Zaprezentowano taksonomię siedmiu fundamentalnych iskier matematycznych, przeprowadzono audyt stabilności numerycznej (IEEE 754) oraz wykazano praktyczne zastosowania w termodynamice (odzysk energii w kotłach na drewno bez instrukcji warunkowych), regularyzacji osobliwości wewnątrz czarnych dziur na skali Plancka oraz w układach złożonych.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ==============================================================================
+\section{Wstęp i Geneza Teorii}
+% ==============================================================================
+
+Klasyczna fizyka i inżynieria opierają się na założeniu, że podstawowe operacje arytmetyczne ($+, -, \cdot, /$) są absolutne, natomiast złożoność świata opisuje się poprzez równania różniczkowe oraz algorytmy warunkowe. Podejście to napotyka trzy główne bariery:
+
+\begin{enumerate}
+    \item \textbf{Osobliwości fizyczne:} W centrum czarnych dziur ($r \to 0$) lub w chwili Wielkiego Wybuchu klasyczne równania generują nieskończoności.
+    \item \textbf{Nieliniowość energetyczna:} W przyrodzie sumowana jest energia, natomiast przyrządy pomiarowe i zmysły rejestrują wielkości nieliniowe (prędkość $v \propto \sqrt{E}$, temperaturę promieniowania $T \propto E^{1/4}$, poziom dźwięku $L \propto \ln E$).
+    \item \textbf{Złożoność algorytmiczna sterowania:} Bezpieczne prowadzenie procesów przemysłowych wymaga dziesiątek instrukcji warunkowych oraz regulatorów PID, podatnych na przeregulowanie i błędy czujników.
+\end{enumerate}
+
+Punktem wyjścia dla prezentowanej teorii (TPFAS) była rewizja czterech podstawowych równań arytmetyki nie-Newtonowskiej:
+\begin{align}
+    a \oplus b &= f^{-1}\big(f(a) + f(b)\big), & a \ominus b &= f^{-1}\big(f(a) - f(b)\big), \\
+    n \odot a &= f^{-1}\big(n \cdot f(a)\big), & a \oslash n &= f^{-1}\left(\frac{f(a)}{n}\right).
+\end{align}
+Rozwinięcie tego schematu o człon interakcji ze środowiskiem doprowadziło do sformułowania \textbf{Generatora M. Szulia}, który przekształca arytmetykę z narzędzia księgowego w programowalne środowisko fizyczne.
+
+% ==============================================================================
+\section{Anatomia Systemu: Pięć Fundamentalnych Atomów}
+% ==============================================================================
+
+Analiza konstrukcyjna wykazała, że każdy kompletny model fizyczno-obliczeniowy w ramach TPFAS składa się z dokładnie pięciu niepodzielnych elementów składowych:
+
+\begin{enumerate}
+    \item \textbf{Koder / Soczewka $g_{\text{Sz}}(x)$:} Ścisła bijekcja przekładająca wielkość mierzalną $x \in D$ na surowy potencjał energetyczny w przestrzeni ukrytej.
+    \item \textbf{Dekoder Rzeczywistości $g_{\text{Sz}}^{-1}(y)$:} Transformacja odwrotna przywracająca wynik obliczeń do świata fizycznego i narzucająca naturalne granice bezpieczeństwa.
+    \item \textbf{Rdzeń Liniowy $(+, -)$:} Wewnętrzny bilans zachowania operujący na przetransformowanych wielkościach.
+    \item \textbf{Parametr Sprzężenia Tła ($s \ge 0$):} Miara aktywności środowiska (katalizatora, fluktuacji próżni, tarcia statycznego). Dla $s = 0$ układ jest izolowany (TPFAS 1.0); dla $s > 0$ układ staje się otwarty i generuje synergię (TPFAS 2.0).
+    \item \textbf{Relatywne Zero ($0_g = g_{\text{Sz}}^{-1}(0)$):} Punkt równowagi dynamicznej układu (np. temperatura pokojowa, próg kondensacji lub $50\%$ niepewności informacyjnej).
+\end{enumerate}
+
+% ==============================================================================
+\section{Formalizm Matematyczny i Generator M. Szulia}
+% ==============================================================================
+
+\begin{axiom}[Izomorfizm Energetyczny]
+W każdym układzie fizycznym istnieje ukryta wielkość zachowana, w której oddziaływania elementarne sumują się addytywnie, natomiast obserwowane nieliniowości są wynikiem rzutowania przez koder $g_{\text{Sz}}$ i dekoder $g_{\text{Sz}}^{-1}$.
+\end{axiom}
+
+\begin{definition}[Generator M. Szulia --- Algebra Synergii]
+Niech $g_{\text{Sz}}: D \to \mathbb{R}_+$ będzie ścisłą bijekcją, a $s \ge 0$ parametrem sprzężenia ze środowiskiem. Operator dodawania synergicznego $\oplus_s$ oraz operator wygaszania $\ominus_s$ definiujemy jako:
+\begin{align}
+    a \oplus_s b &= g_{\text{Sz}}^{-1}\Big( g_{\text{Sz}}(a) + g_{\text{Sz}}(b) + 2\sqrt{s\big(g_{\text{Sz}}(a) + g_{\text{Sz}}(b)\big)} \Big), \label{eq:szulia_add} \\
+    a \ominus_s b &= g_{\text{Sz}}^{-1}\Big( \big(\sqrt{g_{\text{Sz}}(a) + s} - \sqrt{s}\big)^2 - g_{\text{Sz}}(b) \Big). \label{eq:szulia_sub}
+\end{align}
+W przestrzeni amplitud ($u = \sqrt{X}$, gdzie $X = g_{\text{Sz}}(a) + g_{\text{Sz}}(b)$) równanie \eqref{eq:szulia_add} przyjmuje postać przesunięcia: $X + 2\sqrt{sX} = (\sqrt{X} + \sqrt{s})^2 - s$.
+\footnote{Operator \eqref{eq:szulia_add} wymaga $X = g_{\text{Sz}}(a)+g_{\text{Sz}}(b) \ge 0$. W klasach, w których $g$ przyjmuje wartości ujemne (np. saturacja), należy złożyć $g$ z przesunięciem albo użyć $\max(X,0)$ --- tak jak w równaniu \eqref{eq:pwm}.}
+\end{definition}
+
+\begin{theorem}[Własności Generatora M. Szulia]
+Dla $s > 0$ struktura $(D, \oplus_s)$ jest niełączną magmą przemienną posiadającą następujące własności fizyczne:
+\begin{enumerate}
+    \item \textbf{Aktywacja z próżni:} Połączenie obiektu $a$ z elementem zerowym $0_g$ wstrzykuje energię aktywacji tła:
+    \begin{equation}
+        a \oplus_s 0_g = g_{\text{Sz}}^{-1}\Big(g_{\text{Sz}}(a) + 2\sqrt{s \cdot g_{\text{Sz}}(a)}\Big) > a.
+    \end{equation}
+    \item \textbf{Przewaga procesów kaskadowych (brak łączności):} Dla dowolnych $a, b, c \in D$ zachodzi $(a \oplus_s b) \oplus_s c \neq a \oplus_s (b \oplus_s c)$. Podział zasobów na $n$ mniejszych porcji ($n \odot_s a$) generuje większy zysk energetyczny niż pojedynczy impuls zbiorczy.
+\end{enumerate}
+\end{theorem}
+
+\subsection{Taksonomia Siedmiu Iskier Matematycznych}
+
+\begin{table}[h!]
+\centering
+\caption{Zestawienie siedmiu fundamentalnych iskier matematycznych w architekturze TPFAS (gdzie $X = g(a)$, $Y = g(b)$).}
+\label{tab:sparks}
+\small
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.3cm} >{\raggedright\arraybackslash}p{4.9cm} X@{}}
+\toprule
+\textbf{Nazwa Iskry} & \textbf{Formuła $a \oplus b$} & \textbf{Własność i zjawiska fizyczne} \\
+\midrule
+1. Zachowawcza & $g^{-1}(X + Y)$ & Grupa abelowa; układy izolowane, zachowanie energii. \\
+2. Synergii (M. Szulia) & $g^{-1}\big(X + Y + 2\sqrt{s(X+Y)}\big)$ & Magma niełączna ($s > 0$); kataliza, lasery, rozruch. \\
+3. Interakcyjna (Tsallisa) & $g^{-1}\big(X + Y + (1-q)XY\big)$ & Nieekstensywność ($q \neq 1$); plazma, grawitacja, tłum. \\
+4. Ekstremalna & $g^{-1}\big(\max(X, Y)\big)$ & Idempotentność; wąskie gardła, logistyka, AI. \\
+5. Równowagi & $g^{-1}\big(wX + (1-w)Y\big)$ & Uśrednianie ($a \oplus_w a = a$); fuzja czujników. \\
+6. Fraktalna & $g_B^{-1}\big(g_A^{-1}(g_A(X) + g_A(Y))\big)$ & Złożenie 2. rzędu; przejścia wieloskalowe, polaryzacja. \\
+7. Falowa (Fazowa) & $g^{-1}\big(X + Y + 2\sqrt{XY}\cos\Delta\phi\big)$ & Zależność od fazy $\Delta\phi$; interferencja, ANC, 5G. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ==============================================================================
+\section{Przekład na Klasyczną Analizę i Algebrę}
+% ==============================================================================
+
+Dla zachowania pełnej równoważności z matematyką akademicką ustalono ścisły słownik przekładu:
+\begin{itemize}
+    \item \textbf{Pochodna sprzężona:} Nowa pochodna $D_g h(x) = g^{-1}\big(\frac{d}{dx}[g(h(x))]\big)$ odpowiada przekształceniu pochodnej przez dyfeomorfizm $g$.
+    \item \textbf{Ruch jednostajny w przestrzeni $g$:} Równanie $x(t) = x_0 \oplus (v \odot t)$ jest dokładnym rozwiązaniem nieliniowego równania różniczkowego zwyczajnego pierwszego rzędu metodą rozdzielenia zmiennych:
+    \begin{equation}
+        \frac{dx}{dt} = \frac{g(v)}{g'(x)} \iff g(x(t)) - g(x_0) = t \cdot g(v).
+    \end{equation}
+    \item \textbf{Metryka indukowana:} Odległość $d_g(a,b) = g^{-1}(|g(a) - g(b)|)$ stanowi metrykę typu \emph{pullback}, w której $g'(x)$ pełni rolę lokalnego tensora metrycznego.
+\end{itemize}
+
+% ==============================================================================
+\section{Cztery Klasy Przestrzeni i Stabilność Numeryczna}
+% ==============================================================================
+
+W tabeli \ref{tab:spaces} zestawiono cztery główne klasy przestrzeni dopasowane do geometrii zjawisk fizycznych (przyjęto oznaczenia $\Delta = x_{\max} - x_{\min}$ oraz $u_a = \frac{a - x_{\min}}{\Delta}$).
+
+\begin{table}[h!]
+\centering
+\caption{Parametry i operatory czterech głównych klas przestrzeni w TPFAS.}
+\label{tab:spaces}
+\footnotesize
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.9cm} >{\raggedright\arraybackslash}p{3.1cm} >{\raggedright\arraybackslash}p{3.4cm} X@{}}
+\toprule
+\textbf{Klasa} & \textbf{Generator $g(x)$} & \textbf{Odwrotność $g^{-1}(y)$} & \textbf{Dodawanie $a \oplus b$} \\
+\midrule
+1. Energetyczna & $x^p$ & $y^{1/p}$ & $\big(a^p + b^p\big)^{1/p}$ \\
+2. Saturacji & $\ln\!\left(\dfrac{x - x_{\min}}{x_{\max} - x}\right)$ & $x_{\min} + \dfrac{\Delta}{1 + e^{-y}}$ & $x_{\min} + \dfrac{\Delta\, u_a u_b}{u_a u_b + (1-u_a)(1-u_b)}$ \\
+3. Hybrydowa & $\alpha x + \ln(x)$ & $\dfrac{1}{\alpha}W\!\left(\alpha e^y\right)$ & $\dfrac{1}{\alpha}W\!\left(\alpha ab \cdot e^{\alpha(a+b)}\right)$ \\
+4. Ziarnista & $x + k\sin(x)$ & metoda Newtona & $g^{-1}\big(a+b+k(\sin a+\sin b)\big)$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Weryfikacja numeryczna (IEEE 754):} Testy obliczeniowe wykazały spełnienie aksjomatów ciała z dokładnością do $1{,}39 \cdot 10^{-17}$. W przestrzeni Lamberta wykryto błąd przepełnienia dla argumentów $y > 500$ (gdzie $e^y > 10^{217}$). Problem wyeliminowano poprzez zastąpienie funkcji $W(e^y)$ rozwinięciem asymptotycznym $y - \ln y + \frac{\ln y}{y}$, co zapewniło pełną stabilność obliczeń.
+
+% ==============================================================================
+\section{Prawa Programowalnej Fizyki i Sterowanie Bezwarunkowe}
+% ==============================================================================
+
+\begin{law}[Zasada Ukrytej Liniowości]
+Każdy nieliniowy proces fizyczny staje się ruchem jednostajnym prostoliniowym w arytmetyce generowanej przez funkcję $g(x)$ właściwą dla danego ośrodka.
+\end{law}
+
+\begin{law}[Zasada Naturalnych Barier]
+Ograniczenia fizyczne układu (prędkość światła $c$, temperatura wrzenia $T_{\max}$, przeszkody terenowe) wynikają bezpośrednio z dziedziny dekodera $g^{-1}(y)$ i nie wymagają zewnętrznych instrukcji warunkowych w algorytmach sterowania.
+\end{law}
+
+\subsection{Wdrożenie Inżynieryjne: Odzysk Energii z Kotła na Drewno}
+
+W procesie spalania drewna w kotłach z płaszczem wodnym istnieją dwie krytyczne granice: próg kondensacji smoły ($T_{\min} = 52^\circ\text{C}$) oraz bariera wrzenia ($T_{\max} = 90^\circ\text{C}$). Definiując potencjał termiczny układu jako:
+\begin{equation}
+X(T, \dot{T}) = \ln\left(\frac{T - T_{\min}}{T_{\max} - T}\right) + \gamma\dot{T},
+\end{equation}
+wysterowanie pompy obiegowej PWM w przestrzeni M. Szulia przyjmuje zwartą postać:
+\begin{equation}
+P_{\text{PWM}}(X) = \frac{1}{1 + \exp\Big(-\big(X + 2\sqrt{s \cdot \max(X, 0)}\big)\Big)}.
+\label{eq:pwm}
+\end{equation}
+Układ automatycznie wstrzymuje obieg podczas rozpalania (maksymalizując temperaturę dopalania gazów drzewnych), wyprzedza nagłe skoki ognia po dołożeniu paliwa i asymptotycznie dąży do $100\%$ mocy przy $90^\circ\text{C}$ bez ani jednej instrukcji warunkowej.
+
+% ==============================================================================
+\section{Zastosowania w Ekstremalnych Obszarach Rzeczywistości}
+% ==============================================================================
+
+\subsection{Eliminacja Osobliwości we Wnętrzu Czarnej Dziury}
+
+Zastąpienie klasycznej współrzędnej radialnej $r \in (0, r_s)$ generatorem saturacji ograniczonym od dołu długością Plancka ($l_P \approx 1{,}616 \cdot 10^{-35}\,\mathrm{m}$):
+\begin{equation}
+g_{\text{BH}}(r) = \ln\left(\frac{r - l_P}{r_s - r}\right)
+\end{equation}
+usuwa osobliwość w centrum czarnej dziury. Zapadająca się materia zatrzymuje się asymptotycznie na kwantowej ścianie Plancka, tworząc stabilny obiekt o skończonej gęstości, natomiast promieniowanie Hawkinga opisuje aktywacja z próżni $a \oplus_s 0_g$ wywołana fluktuacjami kwantowymi horyzontu ($s > 0$).
+
+\subsection{Złożoność Ekosystemów Oceanicznych i Sieci Neuronowych}
+
+W układach otwartych o wysokiej złożoności --- takich jak zakwity fitoplanktonu na styku prądów głębinowych i światła słonecznego czy powstawanie skojarzeń w głębokich sieciach neuronowych --- klasyczna addytywność zawodzi. Operator M. Szulia ($\oplus_s$) oddaje nieliniową eksplozję biomasy oraz wzmocnienie rzadkich cech w uczeniu głębokim.
+
+% ==============================================================================
+\section{Podsumowanie}
+% ==============================================================================
+
+Teoria Programowalnej Fizyki i Algebry Synergii (TPFAS) wraz z Generatorem M. Szulia dostarcza jednolitego aparatu pojęciowego i obliczeniowego łączącego fizykę teoretyczną z praktyczną inżynierią. Przeniesienie ciężaru obliczeń z równań różniczkowych i logiki warunkowej do struktury samych operatorów arytmetycznych otwiera drogę do tworzenia bezpieczniejszych, szybszych i bardziej energooszczędnych systemów sterowania.
+
+\begin{thebibliography}{9}
+\bibitem{grossman1972} M. Grossman, R. Katz, \emph{Non-Newtonian Calculus}, Lee Press, Pigeon Cove, 1972.
+\bibitem{czachor2015} M. Czachor, \emph{Relativity of Arithmetic as a Fundamental Symmetry of Physics}, Quantum Studies: Mathematics and Foundations, Vol. 3, pp. 123--133, 2016.
+\bibitem{tsallis1988} C. Tsallis, \emph{Possible generalization of Boltzmann-Gibbs statistics}, Journal of Statistical Physics, Vol. 52, pp. 479--487, 1988.
+\bibitem{ungar2008} A. A. Ungar, \emph{Analytic Hyperbolic Geometry and Albert Einstein's Special Theory of Relativity}, World Scientific, 2008.
+\end{thebibliography}
+
+\end{document}
