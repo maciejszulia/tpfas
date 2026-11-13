@@ -1,26 +1,25 @@
-# TPFAS — Teoria Programowalnej Fizyki i Algebry Synergii
+# Arytmetyka nie-Newtonowska z członem synergii
 
-Artykuł (preprint) wraz ze źródłem LaTeX i zbudowanym PDF.
+Notatka (preprint) ze źródłem LaTeX i zbudowanym PDF. Wcześniejszy tytuł roboczy: TPFAS.
 
-**Autor:** M. Szulia · **Wersja:** listopad 2026 · **Objętość:** 5 stron
+**Autor:** Maciej Szulia | **Wersja:** listopad 2026 | **Objętość:** 5 stron
 
 ## O czym jest
 
-Praca rozwija arytmetykę nie-Newtonowską (Grossman–Katz) o człon sprzężenia
-ze środowiskiem i definiuje **Generator M. Szulia**:
+Praca dodaje do arytmetyki nie-Newtonowskiej (Grossman, Katz) człon sprzężenia
+ze środowiskiem i definiuje operator synergiczny:
 
 ```
 a ⊕_s b = g⁻¹( g(a) + g(b) + 2√(s·(g(a)+g(b))) )
 a ⊖_s b = g⁻¹( (√(g(a)+s) − √s)² − g(b) )
 ```
 
-Dla `s = 0` wracamy do zwykłego transportu struktury (TPFAS 1.0); dla `s > 0`
-operator staje się niełączny i modeluje synergię (TPFAS 2.0). Dalej: taksonomia
-siedmiu „iskier" (zachowawcza, synergii, Tsallisa, ekstremalna, równowagi,
-fraktalna, falowa), cztery klasy przestrzeni (energetyczna, saturacji,
-hybrydowa, ziarnista), audyt numeryczny IEEE 754 oraz dwa wdrożenia: sterowanie
-kotłem na drewno bez instrukcji warunkowych i regularyzacja osobliwości
-w metryce Schwarzschilda.
+Dla `s = 0` operator jest zwykłym przeniesieniem struktury. Dla `s > 0` operator
+jest przemienny i nie jest łączny. Praca zawiera też zestawienie 7 wariantów
+działania, 4 klasy generatorów (energetyczna, saturacji, hybrydowa, ziarnista),
+wynik testów numerycznych IEEE 754 oraz 3 propozycje zastosowań: sterowanie pompą
+kotła na drewno bez instrukcji warunkowych, zmianę współrzędnej radialnej we
+wnętrzu czarnej dziury i opis układów otwartych.
 
 ## Pliki
 
@@ -42,22 +41,23 @@ Wymagany TeX Live z pakietami: `babel-polish`, `lmodern`, `amsmath`, `amsthm`,
 
 ## Status i zakres
 
-To dokument teoretyczny autora, nie artykuł recenzowany. Część tez ma charakter
-postulatów modelowych, a nie dowiedzionych twierdzeń fizycznych — w
-szczególności:
+To dokument teoretyczny autora, nie artykuł recenzowany. Propozycje zastosowań są
+hipotezami modelowymi, a nie dowiedzionymi twierdzeniami fizycznymi:
 
-* „eliminacja osobliwości" czarnej dziury przez generator saturacji jest
-  *zmianą współrzędnych* w metryce, a nie rozwiązaniem równań Einsteina;
-* „sterowanie bezwarunkowe" oznacza, że bariery są wpisane w dziedzinę
-  dekodera `g⁻¹`, a nie że regulator jest odporny na awarie czujników;
-* niełączność `⊕_s` jest własnością algebraiczną (sprawdzalną numerycznie),
-  ale jej fizyczna interpretacja jako „zysku kaskadowego" wymaga modelu
-  kalibracyjnego.
+* generator saturacji we wnętrzu czarnej dziury jest *zmianą współrzędnej*,
+  a nie rozwiązaniem równań Einsteina;
+* „sterowanie bez instrukcji warunkowych” oznacza, że bariery są wpisane
+  w dziedzinę dekodera `g⁻¹`, a nie że regulator jest odporny na awarie czujników;
+* brak łączności `⊕_s` jest własnością algebraiczną (sprawdzalną numerycznie);
+  interpretacja fizyczna tej własności wymaga modelu kalibracyjnego.
 
-Te zastrzeżenia nie unmniejszają konstrukcji — porządkują, co jest matematyką,
-a co hipotezą.
+## Zobacz też
+
+Repozytorium [function-generated-arithmetics](https://github.com/maciejszulia/function-generated-arithmetics)
+zawiera pomiar własności operatora synergicznego: dla `s > 0` operator nie ma
+elementu neutralnego i nie jest łączny.
 
 ## Prawa
 
-Tekst: © M. Szulia, 2026. Repozytorium publiczne do wglądu i cytowania;
+Tekst: © Maciej Szulia, 2026. Repozytorium publiczne do wglądu i cytowania;
 brak licencji na redystrybucję zmienionych wersji.
